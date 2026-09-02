@@ -1,0 +1,16 @@
+---
+// The brand mark: one irregular blotch, quoting the fire salamander's own
+// markings rather than a generic logo dot. Reused at small size in the nav
+// and footer; the hero's decorative cluster is its own set of paths.
+interface Props {
+  class?: string;
+}
+const { class: className = '' } = Astro.props;
+---
+
+<svg viewBox="0 0 100 100" class={className} aria-hidden="true">
+  <path
+    fill="currentColor"
+    d="M50,4 C58,2 64,8 60,16 C72,10 84,18 80,30 C92,32 96,46 86,52 C94,62 88,76 76,74 C78,86 64,94 54,86 C48,96 34,94 32,82 C20,88 8,80 12,68 C2,64 0,50 10,44 C4,34 12,22 24,24 C22,12 34,4 44,10 C46,6 48,4 50,4 Z"
+  />
+</svg>

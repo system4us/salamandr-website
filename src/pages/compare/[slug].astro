@@ -1,0 +1,66 @@
+---
+import { getCollection, render } from 'astro:content';
+import MarketingLayout from '../../layouts/MarketingLayout.astro';
+import { SITE } from '../../consts';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('comparisons');
+  return entries.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry }
+  }));
+}
+
+const { entry } = Astro.props;
+const { data } = entry;
+const { Content } = await render(entry);
+---
+
+<MarketingLayout title={`Salamandr vs ${data.competitor}`} description={data.summary}>
+  <article class="mx-auto max-w-4xl px-6 py-20">
+    <p class="font-mono text-xs uppercase tracking-[0.2em] text-ember">Comparison</p>
+    <h1 class="mt-3 font-display text-4xl font-semibold tracking-tight text-paper">
+      Salamandr vs {data.competitor}
+    </h1>
+    <p class="mt-3 text-lg text-bone">{data.tagline}</p>
+    <p class="mt-6 max-w-2xl text-bone">{data.summary}</p>
+
+    <div class="mt-12 overflow-x-auto border border-bone-dim/25">
+      <table class="w-full min-w-[560px] text-left text-sm">
+        <thead>
+          <tr class="border-b border-bone-dim/25 bg-ink-raised font-mono text-xs uppercase tracking-wider text-bone-dim">
+            <th class="px-5 py-3 font-medium">Feature</th>
+            <th class="px-5 py-3 font-medium text-ember">Salamandr</th>
+            <th class="px-5 py-3 font-medium">{data.competitor}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {data.features.map((row, i) => (
+            <tr class:list={['border-b border-bone-dim/15', i % 2 === 1 && 'bg-ink-raised/60']}>
+              <td class="px-5 py-3 text-paper">{row.label}</td>
+              <td class="px-5 py-3 text-bone">{row.salamandr}</td>
+              <td class="px-5 py-3 text-bone-dim">{row.competitor}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    <div class="prose prose-invert mt-12 max-w-none font-sans prose-headings:font-display prose-headings:font-semibold prose-headings:text-paper prose-p:text-bone prose-a:text-ember prose-strong:text-paper">
+      <Content />
+    </div>
+
+    <div class="mt-16 flex flex-col items-center gap-4 border border-bone-dim/25 p-10 text-center sm:flex-row sm:justify-between sm:text-left">
+      <div>
+        <h2 class="font-display text-lg font-semibold text-paper">See it running before you decide</h2>
+        <p class="mt-1 text-sm text-bone-dim">Docker Compose, one command, on your own machine.</p>
+      </div>
+      <a
+        href={SITE.quickstartUrl}
+        class="inline-flex flex-none items-center justify-center border border-ember bg-ember px-5 py-2.5 font-mono text-xs font-medium uppercase tracking-wider text-ink transition-colors hover:bg-transparent hover:text-ember"
+      >
+        Read the quickstart
+      </a>
+    </div>
+  </article>
+</MarketingLayout>

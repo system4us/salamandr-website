@@ -1,0 +1,203 @@
+/*
+ * Salamandr brand on top of Starlight — the docs section of the same site
+ * that ships /, /compare/ and /industries/, so it needs the same palette
+ * and type system, not Starlight's stock light-mode-by-default look.
+ */
+:root,
+:root[data-theme='light'] {
+  --sl-color-bg: #0e0f0b;
+  --sl-color-bg-nav: #0e0f0b;
+  --sl-color-bg-sidebar: #0e0f0b;
+  --sl-color-bg-inline-code: #17190f;
+  --sl-color-black: #0e0f0b;
+  --sl-color-white: #f3eee1;
+  --sl-color-gray-1: #f3eee1;
+  --sl-color-gray-2: #dcd6c4;
+  --sl-color-gray-3: #b9b29c;
+  --sl-color-gray-4: #7c7768;
+  --sl-color-gray-5: #55503f;
+  --sl-color-gray-6: #26271a;
+  --sl-color-gray-7: #17190f;
+  --sl-color-text: #b9b29c;
+  --sl-color-text-accent: #e8890b;
+  --sl-color-accent-low: #2a1a08;
+  --sl-color-accent: #e8890b;
+  --sl-color-accent-high: #f6c98a;
+  --sl-color-hairline-light: rgba(185, 178, 156, 0.25);
+  --sl-color-hairline: rgba(185, 178, 156, 0.15);
+  --sl-color-hairline-shade: rgba(185, 178, 156, 0.1);
+  --sl-font: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --sl-font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", monospace;
+}
+
+/* One look — hide theme toggle */
+starlight-theme-select {
+  display: none;
+}
+
+/* Typography & Headings */
+.sl-markdown-content h1,
+.sl-markdown-content h2,
+.sl-markdown-content h3,
+.sl-markdown-content h4 {
+  font-family: "Fraunces", ui-serif, Georgia, serif;
+  font-weight: 600;
+  color: #f3eee1;
+  letter-spacing: -0.015em;
+}
+
+.sl-markdown-content h1 {
+  font-size: 2.25rem;
+  line-height: 1.15;
+  margin-bottom: 1.5rem;
+}
+
+.sl-markdown-content h2 {
+  font-size: 1.5rem;
+  margin-top: 2.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(185, 178, 156, 0.15);
+}
+
+.sl-markdown-content h3 {
+  font-size: 1.25rem;
+  margin-top: 2rem;
+}
+
+.sl-markdown-content p,
+.sl-markdown-content li {
+  line-height: 1.7;
+  color: #b9b29c;
+}
+
+.sl-markdown-content strong {
+  color: #f3eee1;
+}
+
+.sl-markdown-content a {
+  color: #e8890b;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(232, 137, 11, 0.3);
+  transition: all 0.15s ease;
+}
+
+.sl-markdown-content a:hover {
+  color: #f6c98a;
+  border-bottom-color: #e8890b;
+}
+
+/* Code Blocks & Inline Code */
+.sl-markdown-content pre,
+.expressive-code {
+  border: 1px solid rgba(185, 178, 156, 0.2) !important;
+  border-radius: 0.5rem !important;
+  background-color: #17190f !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.sl-markdown-content code:not(pre code) {
+  background-color: #17190f;
+  color: #f3eee1;
+  padding: 0.15rem 0.4rem;
+  border-radius: 0.25rem;
+  border: 1px solid rgba(185, 178, 156, 0.15);
+  font-size: 0.85em;
+}
+
+/* Tables & Responsive Horizontal Scrolling */
+.sl-markdown-content {
+  overflow-wrap: break-word;
+}
+
+.sl-markdown-content table {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-collapse: collapse;
+  border: 1px solid rgba(185, 178, 156, 0.2);
+  border-radius: 0.5rem;
+  margin: 1.5rem 0;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(232, 137, 11, 0.3) #17190f;
+}
+
+.sl-markdown-content table::-webkit-scrollbar {
+  height: 6px;
+}
+
+.sl-markdown-content table::-webkit-scrollbar-track {
+  background: #17190f;
+}
+
+.sl-markdown-content table::-webkit-scrollbar-thumb {
+  background: rgba(232, 137, 11, 0.4);
+  border-radius: 3px;
+}
+
+.sl-markdown-content th {
+  background-color: #17190f;
+  color: #f3eee1;
+  font-family: var(--sl-font-mono);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid rgba(185, 178, 156, 0.2);
+  white-space: nowrap;
+}
+
+.sl-markdown-content td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid rgba(185, 178, 156, 0.1);
+  color: #b9b29c;
+  font-size: 0.9rem;
+}
+
+.sl-markdown-content tr:last-child td {
+  border-bottom: none;
+}
+
+.sl-markdown-content tr:nth-child(even) td {
+  background-color: rgba(23, 25, 15, 0.4);
+}
+
+/* Ensure code inside tables and headings wrap cleanly */
+.sl-markdown-content td code {
+  white-space: nowrap;
+}
+
+/* Asides & Callouts */
+.starlight-aside {
+  border-radius: 0.5rem !important;
+  border-left-width: 3px !important;
+}
+
+.starlight-aside--note {
+  border-color: #e8890b !important;
+  background-color: rgba(232, 137, 11, 0.06) !important;
+}
+
+.starlight-aside--tip {
+  border-color: #7d9467 !important;
+  background-color: rgba(125, 148, 103, 0.06) !important;
+}
+
+/* Sidebar Styling */
+nav.sidebar {
+  border-right: 1px solid rgba(185, 178, 156, 0.15) !important;
+}
+
+.sidebar-content a[aria-current='page'] {
+  color: #e8890b !important;
+  font-weight: 600;
+  background-color: rgba(232, 137, 11, 0.1) !important;
+  border-radius: 0.375rem;
+}
+
+/* Search Dialog Overlay */
+::backdrop,
+dialog[open] {
+  background-color: #0e0f0b;
+}

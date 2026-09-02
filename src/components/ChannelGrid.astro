@@ -1,0 +1,34 @@
+---
+// ChannelGrid.astro — Interactive visual channel showcase
+const channels = [
+  { name: 'WhatsApp', icon: 'whatsapp', type: 'Direct API', badge: 'Popular' },
+  { name: 'Live Web Chat', icon: 'chat', type: 'Embeddable Widget', badge: 'Fast' },
+  { name: 'Email (IMAP/SMTP)', icon: 'email', type: 'Native Protocol', badge: 'Standard' },
+  { name: 'Telegram', icon: 'telegram', type: 'Bot API', badge: 'Direct' },
+  { name: 'Instagram DMs', icon: 'instagram', type: 'Meta App', badge: 'Direct' },
+  { name: 'Messenger', icon: 'messenger', type: 'Meta App', badge: 'Direct' },
+  { name: 'Discord', icon: 'discord', type: 'Two-way Sync', badge: 'ChatOps' },
+  { name: 'Slack', icon: 'slack', type: 'Two-way Mirror', badge: 'Enterprise' },
+  { name: 'Microsoft Teams', icon: 'teams', type: 'Two-way Mirror', badge: 'Enterprise' },
+  { name: 'Self-Service Portal', icon: 'portal', type: 'Knowledge Base', badge: 'Included' },
+];
+---
+
+<div class="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
+  {channels.map((ch) => (
+    <div class="group relative flex flex-col justify-between rounded-lg border border-bone-dim/20 bg-ink-raised/50 p-4 transition-all duration-200 hover:-translate-y-0.5 hover:border-ember/50 hover:bg-ink-raised hover:shadow-[0_4px_20px_rgba(232,137,11,0.1)]">
+      <div class="flex items-center justify-between">
+        <span class="flex h-2 w-2 rounded-full bg-emerald-400"></span>
+        <span class="rounded bg-bone-dim/15 px-1.5 py-0.5 font-mono text-[9px] uppercase tracking-wider text-bone-dim group-hover:text-ember">
+          {ch.badge}
+        </span>
+      </div>
+      <div class="mt-4">
+        <h4 class="font-display font-semibold text-paper text-sm group-hover:text-ember transition-colors">
+          {ch.name}
+        </h4>
+        <p class="mt-1 font-mono text-[10px] text-bone-dim">{ch.type}</p>
+      </div>
+    </div>
+  ))}
+</div>

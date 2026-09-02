@@ -1,0 +1,70 @@
+---
+import { SITE } from '../consts';
+import BlotchMark from './BlotchMark.astro';
+
+const columns = [
+  {
+    heading: 'Product',
+    links: [
+      { href: SITE.editionsUrl, label: 'Editions' },
+      // SaaS pricing vetoed for now — re-add once #pricing exists again:
+      // { href: `${SITE.homeUrl}#pricing`, label: 'Pricing' },
+      { href: SITE.compareUrl, label: 'Compare' },
+      { href: SITE.industriesUrl, label: 'Industries' }
+    ]
+  },
+  {
+    heading: 'Docs & API',
+    links: [
+      { href: SITE.docsUrl, label: 'What is Salamandr' },
+      { href: SITE.quickstartUrl, label: 'Quickstart' },
+      { href: SITE.apiReferenceUrl, label: 'REST API & Webhooks' },
+      { href: `${SITE.homeUrl}docs/build-a-plugin-typescript/`, label: 'Plugin SDK (TS & Rust)' },
+      { href: `${SITE.homeUrl}docs/deployment/`, label: 'Production Deployment' }
+    ]
+  },
+  {
+    heading: 'Project',
+    links: [
+      // This links to the docs site's own source, not the product's (which
+      // isn't on GitHub) — so no LICENSE link here; the AGPL-3.0 fact is
+      // already stated in the tagline below.
+      { href: SITE.githubUrl, label: 'GitHub' }
+    ]
+  }
+];
+
+const year = new Date().getFullYear();
+---
+
+<footer class="border-t border-bone-dim/25 bg-ink">
+  <div class="mx-auto max-w-6xl px-6 py-16">
+    <div class="grid grid-cols-2 gap-10 sm:grid-cols-4">
+      <div class="col-span-2 sm:col-span-1">
+        <a href={SITE.homeUrl} class="flex items-center gap-2.5 font-display text-lg font-semibold text-paper">
+          <BlotchMark class="h-4 w-4 text-ember" />
+          {SITE.name}
+        </a>
+        <p class="mt-3 max-w-xs text-sm text-bone-dim">{SITE.tagline}. Complete data custody on your own servers.</p>
+      </div>
+      {columns.map((col) => (
+        <div>
+          <h3 class="font-mono text-xs font-medium uppercase tracking-wider text-bone-dim">{col.heading}</h3>
+          <ul class="mt-4 space-y-2.5">
+            {col.links.map((link) => (
+              <li>
+                <a href={link.href} class="text-sm text-bone transition-colors hover:text-ember">
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+    <div class="mt-14 flex flex-col gap-2 border-t border-bone-dim/25 pt-6 font-mono text-xs text-bone-dim sm:flex-row sm:items-center sm:justify-between">
+      <p>&copy; {year} {SITE.name}. No telemetry, no phone-home, ever.</p>
+      <p>Built with Astro.</p>
+    </div>
+  </div>
+</footer>

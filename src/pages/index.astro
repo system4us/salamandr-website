@@ -1,0 +1,407 @@
+---
+import MarketingLayout from '../layouts/MarketingLayout.astro';
+import QuickstartTerminal from '../components/QuickstartTerminal.astro';
+import ChannelGrid from '../components/ChannelGrid.astro';
+import { SITE } from '../consts';
+
+const pillars = [
+  {
+    tag: 'Custody',
+    title: 'Your infrastructure, your database',
+    body: 'Single-tenant by design. Ticket threads, customer records, and file attachments never leave your private servers.'
+  },
+  {
+    tag: 'Privacy',
+    title: 'Zero telemetry & air-gap ready',
+    body: 'No phone-home pings, no usage metrics sent back, and no external license servers. Runs securely in air-gapped environments.'
+  },
+  {
+    tag: 'Direct APIs',
+    title: 'Direct API & your own apps',
+    body: 'Connect messaging and social channels with your own developer keys — no intermediary vendor reading your customer conversations.'
+  },
+  {
+    tag: 'Freedom',
+    title: 'Complete control & freedom',
+    body: 'Deploy with one command via Docker Compose or Kubernetes Helm. Free forever for up to 5 agents, with frictionless scaling.'
+  }
+];
+
+const bentoFeatures = [
+  {
+    colSpan: 'lg:col-span-2',
+    tag: 'Private AI & Knowledge Base',
+    title: 'Grounded draft replies with zero cloud leakage',
+    body: 'Upload product guides, PDFs, and runbooks. Embedded and indexed locally using your own private Ollama instance. Your support agents get instant, cited response drafts without sending private customer questions to third-party AI APIs.',
+    highlight: 'Local Ollama & Help Center',
+    isLarge: true
+  },
+  {
+    colSpan: 'lg:col-span-1',
+    tag: 'E-commerce',
+    title: 'Live order & customer context',
+    body: 'Pull live orders, items, tracking status, and refund history from Shopify and WooCommerce right beside the conversation.',
+    enterprise: true
+  },
+  {
+    colSpan: 'lg:col-span-1',
+    tag: 'SLA & Scheduling',
+    title: 'Business hours & pause states',
+    body: 'Define multi-tier SLA targets that respect working calendars, holidays, and paused statuses for accurate metrics.',
+    enterprise: false
+  },
+  {
+    colSpan: 'lg:col-span-2',
+    tag: 'Security & Compliance',
+    title: 'Enterprise SSO, Audit Logs & Custom Roles',
+    body: 'Integrate SAML/OIDC single sign-on for support staff and customer organizations. Track every administrative action in immutable audit logs with granular role permissions.',
+    enterprise: true,
+    isLarge: true
+  },
+  {
+    colSpan: 'lg:col-span-1',
+    tag: 'Automation',
+    title: 'Visual bot triage & macros',
+    body: 'Create interactive decision-tree bots for chat, automated assignment rules, and one-click canned response macros.',
+    enterprise: false
+  },
+  {
+    colSpan: 'lg:col-span-1',
+    tag: 'ChatOps',
+    title: 'Two-way team chat sync',
+    body: 'Mirror tickets seamlessly into Mattermost, Discord, Slack, Microsoft Teams, and Zulip so engineering stays in sync.',
+    enterprise: true
+  },
+  {
+    colSpan: 'lg:col-span-1',
+    tag: 'Storage',
+    title: 'Direct file requests & S3 links',
+    body: 'Collect large diagnostic dumps and attachments directly into your S3, Google Drive, Dropbox, or SFTP server.',
+    enterprise: true
+  },
+  {
+    colSpan: 'lg:col-span-1',
+    tag: 'Scheduling',
+    title: 'Calendar & video bookings',
+    body: 'Schedule support calls directly from a ticket with Google Calendar / Outlook sync and instant Zoom, Teams, or Meet links.',
+    enterprise: true
+  },
+  {
+    colSpan: 'lg:col-span-2',
+    tag: 'Fleet Management',
+    title: 'Run multiple isolated instances under one fleet license',
+    body: 'Deploy independent single-tenant helpdesk instances per subsidiary, client, or geographic region with complete database separation, while pooling seats under a single Enterprise license.',
+    enterprise: true,
+    isLarge: true
+  }
+];
+
+const editions = [
+  {
+    name: 'Community',
+    price: 'Free',
+    priceNote: 'forever, up to 5 agents',
+    description: 'Fully featured self-hosted helpdesk for growing support teams.',
+    features: [
+      'Up to 5 agents',
+      'All native channel adapters',
+      'SLA & business hours policies',
+      'Bot flows & visual triage',
+      'Local AI assist with Ollama',
+      'WebAssembly plugin engine',
+      'Docker Compose & Kubernetes Helm'
+    ],
+    cta: { label: 'Get started in 5 min', href: SITE.quickstartUrl },
+    highlighted: false
+  },
+  {
+    name: 'Enterprise',
+    price: 'From $3,000',
+    priceNote: 'per year, self-hosted, billed in agent tiers',
+    description: 'Scale beyond 5 seats with offline license verification, SSO, and turnkey connectors.',
+    features: [
+      'Expanded agent seat capacity',
+      'SSO (SAML / OIDC for staff & customer orgs)',
+      'Administrative audit log & custom roles',
+      'Turnkey CRM connectors (Jira, GitHub, Linear, HubSpot)',
+      'Live e-commerce (Shopify & WooCommerce)',
+      'Direct file requests to private S3 / Cloud storage',
+      'Multi-instance fleet pooling',
+      'Priority technical support'
+    ],
+    cta: { label: 'Explore Enterprise', href: `${SITE.homeUrl}docs/enterprise-licensing/` },
+    highlighted: true
+  }
+];
+---
+
+<MarketingLayout
+  title="Self-hosted customer support platform"
+  description="Salamandr is a modern, self-hosted helpdesk. Keep full ownership of your customer conversations and connect email, live chat, WhatsApp, and social channels in one place."
+>
+  <!-- Hero Section -->
+  <section class="relative overflow-hidden border-b border-bone-dim/20 pb-20 pt-16 sm:pb-28 sm:pt-24">
+    <!-- Ambient Radial Glow -->
+    <div class="pointer-events-none absolute left-1/2 top-0 -translate-x-1/2 h-[500px] w-full max-w-7xl bg-[radial-gradient(ellipse_80%_60%_at_50%_-10%,rgba(232,137,11,0.15),transparent_70%)]"></div>
+
+    <div class="mx-auto max-w-6xl px-6 text-center">
+      <!-- Top Badge -->
+      <div class="inline-flex items-center gap-2 rounded-full border border-ember/30 bg-ember/10 px-3.5 py-1.5 font-mono text-xs text-ember backdrop-blur-sm shadow-[0_0_15px_rgba(232,137,11,0.15)]">
+        <span class="flex h-1.5 w-1.5 rounded-full bg-ember animate-ping"></span>
+        <span>Self-hosted · 100% Data Custody · Zero Telemetry</span>
+      </div>
+
+      <!-- Main Headline -->
+      <h1 class="mt-8 font-display text-5xl font-semibold leading-[1.08] tracking-tight text-paper sm:text-6xl lg:text-7xl">
+        The helpdesk you<br />
+        actually <span class="bg-gradient-to-r from-ember via-amber-400 to-ember bg-clip-text text-transparent italic">own</span>
+      </h1>
+
+      <p class="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-bone">
+        Every ticket, customer message, and attachment stays on your own private infrastructure.
+        No data mining, no background telemetry, and no phone-home.
+      </p>
+
+      <!-- Action Buttons -->
+      <div class="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+        <a
+          href={SITE.quickstartUrl}
+          class="w-full sm:w-auto inline-flex items-center justify-center rounded-lg border border-ember bg-ember px-8 py-3.5 font-mono text-xs font-semibold uppercase tracking-wider text-ink shadow-[0_0_25px_rgba(232,137,11,0.3)] transition-all hover:bg-ember/90 hover:shadow-[0_0_35px_rgba(232,137,11,0.5)] hover:-translate-y-0.5"
+        >
+          Deploy in 5 minutes
+        </a>
+        <a
+          href={SITE.compareUrl}
+          class="w-full sm:w-auto inline-flex items-center justify-center rounded-lg border border-bone-dim/40 bg-ink/60 backdrop-blur-sm px-6 py-3.5 font-mono text-xs font-medium uppercase tracking-wider text-bone transition-all hover:border-ember/70 hover:text-paper hover:-translate-y-0.5"
+        >
+          Compare vs. Zendesk &amp; others &rarr;
+        </a>
+      </div>
+
+      <!-- Quickstart Terminal Showcase -->
+      <div class="mt-14">
+        <QuickstartTerminal />
+      </div>
+    </div>
+  </section>
+
+  <!-- Core Pillars -->
+  <section class="border-b border-bone-dim/20 py-16 bg-ink-raised/30">
+    <div class="mx-auto max-w-6xl px-6">
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {pillars.map((pillar) => (
+          <div class="relative flex flex-col rounded-xl border border-bone-dim/20 bg-ink/80 p-6 transition-all hover:border-ember/40 hover:-translate-y-1">
+            <span class="font-mono text-[11px] uppercase tracking-wider text-ember mb-3">{pillar.tag}</span>
+            <h3 class="font-display text-base font-semibold text-paper">{pillar.title}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-bone-dim">{pillar.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Channels Section -->
+  <section class="border-b border-bone-dim/20 py-20 relative overflow-hidden">
+    <div class="mx-auto max-w-6xl px-6">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+        <div class="max-w-xl">
+          <p class="font-mono text-xs uppercase tracking-[0.2em] text-ember">Omnichannel</p>
+          <h2 class="mt-3 font-display text-3xl font-semibold text-paper sm:text-4xl">
+            Meet customers wherever they already message you
+          </h2>
+          <p class="mt-3 text-bone">
+            Every conversation feeds into a single unified inbox, handled by your team with fast keyboard shortcuts and live status updates.
+          </p>
+        </div>
+        <div class="font-mono text-xs text-bone-dim border-l border-bone-dim/25 pl-4 hidden md:block">
+          Direct API connections<br />
+          <span class="text-ember font-medium">Zero intermediary vendors</span>
+        </div>
+      </div>
+
+      <ChannelGrid />
+    </div>
+  </section>
+
+  <!-- Context Rail Teaser -->
+  <section class="border-b border-bone-dim/20 py-20 relative overflow-hidden bg-ink-raised/30">
+    <div class="mx-auto max-w-6xl px-6 grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+      <div>
+        <p class="font-mono text-xs uppercase tracking-[0.2em] text-ember">The Context Rail</p>
+        <h2 class="mt-3 font-display text-3xl font-semibold text-paper sm:text-4xl">
+          Every system your agents check by hand, open beside the ticket
+        </h2>
+        <p class="mt-4 max-w-xl text-bone">
+          Order history, CRM records, monitoring alerts, linked issues — fetched live from the
+          systems you already run and rendered next to the conversation the moment a ticket
+          opens. No syncing, no second database, no tab-switching while a customer waits.
+        </p>
+        <a
+          href={SITE.contextRailUrl}
+          class="mt-6 inline-flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-wider text-ember transition-colors hover:text-amber-400"
+        >
+          See how it works &rarr;
+        </a>
+      </div>
+      <div class="rounded-xl border border-bone-dim/20 bg-ink/70 p-5 font-mono text-xs">
+        <div class="flex items-center justify-between border-b border-bone-dim/15 pb-3 mb-3">
+          <span class="text-bone-dim uppercase tracking-wider text-[10px]">Ticket #4821 — rail</span>
+          <span class="flex items-center gap-1.5 text-emerald-400"><span class="h-1.5 w-1.5 rounded-full bg-emerald-400"></span>live</span>
+        </div>
+        <div class="space-y-2.5 text-bone-dim">
+          <div class="flex justify-between"><span class="text-bone">Order #48213</span><span>Shipped · Thu</span></div>
+          <div class="flex justify-between"><span class="text-bone">HubSpot deal</span><span>$12,400 open</span></div>
+          <div class="flex justify-between"><span class="text-bone">Zabbix</span><span>2 problems</span></div>
+          <div class="flex justify-between"><span class="text-bone">SUP-2291</span><span>in QA</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Capabilities (Bento Grid) -->
+  <section class="border-b border-bone-dim/20 py-24">
+    <div class="mx-auto max-w-6xl px-6">
+      <div class="max-w-2xl mb-16">
+        <p class="font-mono text-xs uppercase tracking-[0.2em] text-ember">Capabilities</p>
+        <h2 class="mt-3 font-display text-3xl font-semibold text-paper sm:text-4xl">
+          Engineered for high-volume support operations
+        </h2>
+        <p class="mt-3 text-bone">
+          A comprehensive customer service toolkit built for privacy-conscious teams that refuse to compromise on features.
+        </p>
+      </div>
+
+      <!-- Bento Grid Layout -->
+      <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {bentoFeatures.map((feat) => (
+          <div
+            class:list={[
+              'group relative flex flex-col justify-between rounded-xl border border-bone-dim/20 bg-ink-raised/40 p-7 transition-all duration-300 hover:border-ember/40 hover:bg-ink-raised/80 hover:shadow-[0_10px_30px_rgba(0,0,0,0.5)]',
+              feat.colSpan
+            ]}
+          >
+            <div>
+              <div class="flex items-center justify-between gap-3">
+                <span class="font-mono text-[11px] font-semibold uppercase tracking-wider text-ember">
+                  {feat.tag}
+                </span>
+                {feat.enterprise && (
+                  <span class="rounded border border-ember/60 bg-ember/15 px-2 py-0.5 font-mono text-[10px] font-semibold uppercase tracking-wider text-ember">
+                    Enterprise
+                  </span>
+                )}
+              </div>
+              <h3 class:list={['mt-3 font-display font-semibold text-paper', feat.isLarge ? 'text-xl sm:text-2xl' : 'text-lg']}>
+                {feat.title}
+              </h3>
+              <p class="mt-3 text-sm leading-relaxed text-bone">
+                {feat.body}
+              </p>
+            </div>
+
+            {feat.highlight && (
+              <div class="mt-6 flex items-center gap-2 rounded-lg border border-bone-dim/20 bg-ink/60 px-3.5 py-2 font-mono text-xs text-bone">
+                <span class="h-2 w-2 rounded-full bg-emerald-400"></span>
+                <span>{feat.highlight}</span>
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Editions & Pricing -->
+  <section id="editions" class="border-b border-bone-dim/20 py-24 relative">
+    <div class="mx-auto max-w-6xl px-6">
+      <div class="max-w-2xl mb-16 text-center mx-auto">
+        <p class="font-mono text-xs uppercase tracking-[0.2em] text-ember">Plans &amp; Licensing</p>
+        <h2 class="mt-3 font-display text-3xl font-semibold text-paper sm:text-4xl">
+          One codebase, two ways to scale
+        </h2>
+        <p class="mt-3 text-bone">
+          Community and Enterprise share the identical self-hosted deployment. Enterprise unlocks higher seat tiers and turnkey integrations via an offline-verified license.
+        </p>
+      </div>
+
+      <div class="grid gap-8 sm:grid-cols-2 max-w-4xl mx-auto">
+        {editions.map((edition) => (
+          <div
+            class:list={[
+              'relative flex flex-col justify-between rounded-2xl border p-8 sm:p-10 transition-all',
+              edition.highlighted
+                ? 'border-ember bg-ink-raised/80 shadow-[0_0_50px_rgba(232,137,11,0.12)]'
+                : 'border-bone-dim/25 bg-ink/50'
+            ]}
+          >
+            {edition.highlighted && (
+              <div class="absolute -top-3.5 left-8 rounded-full bg-ember px-3.5 py-0.5 font-mono text-[10px] font-bold uppercase tracking-wider text-ink shadow-md">
+                Scale beyond 5 seats
+              </div>
+            )}
+
+            <div>
+              <div class="flex items-baseline justify-between">
+                <h3 class="font-display text-2xl font-semibold text-paper">{edition.name}</h3>
+              </div>
+              <div class="mt-4">
+                <span class="font-display text-4xl font-semibold text-paper">{edition.price}</span>
+                <span class="block mt-1 font-mono text-xs text-bone-dim">{edition.priceNote}</span>
+              </div>
+              <p class="mt-4 text-sm text-bone leading-relaxed">{edition.description}</p>
+
+              <div class="my-6 border-t border-bone-dim/20"></div>
+
+              <ul class="space-y-3">
+                {edition.features.map((feature) => (
+                  <li class="flex items-start gap-3 text-sm text-bone">
+                    <span class="mt-1 flex h-4 w-4 flex-none items-center justify-center rounded-full bg-ember/20 text-ember font-mono text-[10px]">
+                      ✓
+                    </span>
+                    <span>{feature}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <a
+              href={edition.cta.href}
+              class:list={[
+                'mt-8 inline-flex items-center justify-center rounded-lg border py-3 font-mono text-xs font-semibold uppercase tracking-wider transition-all',
+                edition.highlighted
+                  ? 'border-ember bg-ember text-ink shadow-[0_0_20px_rgba(232,137,11,0.25)] hover:bg-ember/90 hover:shadow-[0_0_30px_rgba(232,137,11,0.4)]'
+                  : 'border-bone-dim/40 bg-ink/80 text-paper hover:border-ember hover:text-ember'
+              ]}
+            >
+              {edition.cta.label}
+            </a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Comparisons Teaser -->
+  <section class="py-24 relative overflow-hidden">
+    <div class="mx-auto max-w-4xl px-6 text-center">
+      <h2 class="font-display text-3xl font-semibold text-paper sm:text-4xl">Evaluating your next helpdesk?</h2>
+      <p class="mx-auto mt-4 max-w-xl text-bone">
+        See how Salamandr stacks up side-by-side on privacy, features, and cost against Zendesk, Freshdesk, osTicket, Intercom, and Help Scout.
+      </p>
+      <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+        <a
+          href={SITE.compareUrl}
+          class="w-full sm:w-auto rounded-lg border border-ember bg-ember px-8 py-3.5 font-mono text-xs font-semibold uppercase tracking-wider text-ink shadow-[0_0_25px_rgba(232,137,11,0.25)] transition-all hover:bg-ember/90 hover:-translate-y-0.5"
+        >
+          View all comparisons &rarr;
+        </a>
+        <a
+          href={SITE.industriesUrl}
+          class="w-full sm:w-auto rounded-lg border border-bone-dim/40 bg-ink/60 px-6 py-3.5 font-mono text-xs font-medium uppercase tracking-wider text-bone transition-all hover:border-ember hover:text-paper hover:-translate-y-0.5"
+        >
+          Browse by industry
+        </a>
+      </div>
+    </div>
+  </section>
+</MarketingLayout>

@@ -1,0 +1,27 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+/*
+ * Salamandr brand tokens.
+ *
+ * Named for the fire salamander (Salamandra salamandra): black skin,
+ * irregular amber/orange blotches, and the old bestiary belief that it
+ * walks through fire unburned — the literal image for "survives a security
+ * review." Ink instead of Tailwind's cool slate; ember instead of the usual
+ * SaaS emerald/violet accent; paper used sparingly as a label surface, never
+ * a page background.
+ */
+@theme {
+  --color-ink: #0e0f0b;
+  --color-ink-raised: #17190f;
+  --color-paper: #f3eee1;
+  --color-ember: #e8890b;
+  --color-ember-deep: #9c4a0f;
+  --color-moss: #7d9467;
+  --color-bone: #b9b29c;
+  --color-bone-dim: #7c7768;
+
+  --font-display: "Fraunces", ui-serif, Georgia, serif;
+  --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", monospace;
+}

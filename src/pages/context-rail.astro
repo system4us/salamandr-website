@@ -1,0 +1,262 @@
+---
+import MarketingLayout from '../layouts/MarketingLayout.astro';
+import { SITE } from '../consts';
+
+const withoutRows = [
+  { app: 'Shopify admin', task: 'find the order' },
+  { app: 'HubSpot', task: 'check the account' },
+  { app: 'Zabbix', task: "check if anything's actually broken" },
+  { app: 'Jira', task: 'search for a matching bug' },
+  { app: 'Email', task: 'ask the customer to resend the file' }
+];
+
+const withRows = [
+  { label: 'Order #48213', detail: 'Shipped — arriving Thursday' },
+  { label: 'HubSpot', detail: 'Owned by Marta R. · $12,400 deal open' },
+  { label: 'Zabbix', detail: '2 open problems on this host group' },
+  { label: 'SUP-2291', detail: 'Linked · in QA' },
+  { label: 'File request', detail: 'Uploads straight into your own storage' }
+];
+
+const panels = [
+  {
+    tag: 'E-commerce',
+    edition: 'Enterprise',
+    title: 'Live orders, refunds & coupons',
+    body: "Pull the exact order behind a ticket from WooCommerce or Shopify — line items, tracking, how much has already been refunded — fetched the moment the agent needs it, never synced into a second database."
+  },
+  {
+    tag: 'CRM',
+    edition: 'Enterprise',
+    title: 'Who this customer is to the business',
+    body: "HubSpot's account owner, whether they're mid-deal, a VIP flag your team defines — so a support reply and a sales relationship stop working from different facts."
+  },
+  {
+    tag: 'MSP & Monitoring',
+    edition: 'Enterprise',
+    title: "What's actually broken",
+    body: "Zabbix's open problems for that customer's own host group, acknowledged with one click from the ticket — before anyone has to ask \"is something down on our end?\""
+  },
+  {
+    tag: 'Issue Trackers',
+    edition: 'Enterprise',
+    title: 'Link the bug, not just the ticket',
+    body: 'Search, link, or file the underlying issue in Jira, GitHub, Linear, or Redmine without leaving the conversation, and watch its status change as engineering works it.'
+  },
+  {
+    tag: 'Task Lists',
+    edition: 'Enterprise',
+    title: 'Hand off without losing the thread',
+    body: 'Open a card in Trello or a task in Asana on whichever board another team actually works from, tied back to the ticket that started it.'
+  },
+  {
+    tag: 'File Storage',
+    edition: 'Enterprise',
+    title: 'Get the file without the email dance',
+    body: 'Send a tokenized upload link straight into your own Dropbox, Box, Drive, OneDrive, S3-compatible bucket, or SFTP server — no more 25MB attachments split across five messages.'
+  },
+  {
+    tag: 'AI Assist',
+    edition: 'Community',
+    title: 'A drafted answer, cited',
+    body: "Ask a question in plain language and get a reply drafted from the tenant's own uploaded docs, embedded and matched entirely by a local Ollama instance — nothing sent to a third-party API to answer it."
+  },
+  {
+    tag: 'Custom & Internal',
+    edition: 'Community',
+    title: 'Whatever you actually run',
+    body: 'The plugin host and SDK are free in every edition. Wire up your own ERP, internal admin tool, or field-service system the same way the 15 built-in connectors work.'
+  }
+];
+---
+
+<MarketingLayout
+  title="The Context Rail"
+  description="Live order history, CRM records, monitoring alerts, and linked issues — fetched on demand and rendered beside every ticket. No syncing, no second database, no tab-switching."
+>
+  <!-- Hero -->
+  <section class="relative overflow-hidden border-b border-bone-dim/20 pb-20 pt-16 sm:pb-28 sm:pt-24">
+    <div class="pointer-events-none absolute left-1/2 top-0 -translate-x-1/2 h-[500px] w-full max-w-7xl bg-[radial-gradient(ellipse_80%_60%_at_50%_-10%,rgba(232,137,11,0.15),transparent_70%)]"></div>
+
+    <div class="mx-auto max-w-6xl px-6 text-center">
+      <div class="inline-flex items-center gap-2 rounded-full border border-ember/30 bg-ember/10 px-3.5 py-1.5 font-mono text-xs text-ember backdrop-blur-sm shadow-[0_0_15px_rgba(232,137,11,0.15)]">
+        <span class="flex h-1.5 w-1.5 rounded-full bg-ember animate-ping"></span>
+        <span>The Context Rail</span>
+      </div>
+
+      <h1 class="mx-auto mt-8 max-w-3xl font-display text-5xl font-semibold leading-[1.08] tracking-tight text-paper sm:text-6xl">
+        The answer is never<br />
+        in <span class="bg-gradient-to-r from-ember via-amber-400 to-ember bg-clip-text text-transparent italic">another tab</span>.
+      </h1>
+
+      <p class="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-bone">
+        Order status, account history, an open deal, a monitoring alert, a linked bug — Salamandr
+        fetches it live from the systems you already run and puts it beside the ticket the moment
+        an agent opens it. Nothing copied in, nothing left to go stale.
+      </p>
+
+      <div class="mt-8 inline-flex items-center gap-2 rounded-lg border border-bone-dim/25 bg-ink-raised/60 px-4 py-2 font-mono text-xs text-bone-dim">
+        <span class="h-2 w-2 rounded-full bg-emerald-400"></span>
+        <span>15 built-in connectors · unlimited custom ones via the SDK</span>
+      </div>
+
+      <div class="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+        <a
+          href={SITE.buildPluginUrl}
+          class="w-full sm:w-auto inline-flex items-center justify-center rounded-lg border border-ember bg-ember px-8 py-3.5 font-mono text-xs font-semibold uppercase tracking-wider text-ink shadow-[0_0_25px_rgba(232,137,11,0.3)] transition-all hover:bg-ember/90 hover:shadow-[0_0_35px_rgba(232,137,11,0.5)] hover:-translate-y-0.5"
+        >
+          Build a connector
+        </a>
+        <a
+          href={SITE.extensionKindsUrl}
+          class="w-full sm:w-auto inline-flex items-center justify-center rounded-lg border border-bone-dim/40 bg-ink/60 backdrop-blur-sm px-6 py-3.5 font-mono text-xs font-medium uppercase tracking-wider text-bone transition-all hover:border-ember/70 hover:text-paper hover:-translate-y-0.5"
+        >
+          See the 15 built-in connectors &rarr;
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Before / After -->
+  <section class="border-b border-bone-dim/20 py-20 bg-ink-raised/30">
+    <div class="mx-auto max-w-6xl px-6">
+      <div class="max-w-2xl mb-12">
+        <p class="font-mono text-xs uppercase tracking-[0.2em] text-ember">Before / After</p>
+        <h2 class="mt-3 font-display text-3xl font-semibold text-paper sm:text-4xl">
+          One glance instead of six tabs
+        </h2>
+        <p class="mt-3 text-bone">
+          A support agent working a hard ticket used to keep half a dozen tabs open — the store
+          admin, the CRM, the monitoring console, the issue tracker — copying numbers back and
+          forth by hand while the customer waited. The Context Rail collapses all of it into one
+          column that opens with the ticket.
+        </p>
+      </div>
+
+      <div class="grid gap-6 lg:grid-cols-2">
+        <!-- Without -->
+        <div class="rounded-xl border border-bone-dim/20 bg-ink/60 p-6">
+          <div class="flex items-center justify-between">
+            <span class="font-mono text-[11px] uppercase tracking-wider text-bone-dim">Without the rail</span>
+            <span class="font-mono text-[10px] text-bone-dim/70">5 tabs, 5 logins</span>
+          </div>
+          <div class="mt-5 space-y-2">
+            {withoutRows.map((row) => (
+              <div class="flex items-center justify-between rounded-lg border border-bone-dim/15 bg-ink-raised/30 px-4 py-3 opacity-70">
+                <span class="text-sm text-bone">{row.app}</span>
+                <span class="font-mono text-[10px] uppercase tracking-wider text-bone-dim">↗ switch tab to {row.task}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- With -->
+        <div class="rounded-xl border border-ember/40 bg-ink-raised/60 p-6 shadow-[0_0_40px_rgba(232,137,11,0.08)]">
+          <div class="flex items-center justify-between">
+            <span class="font-mono text-[11px] uppercase tracking-wider text-ember">With the Context Rail</span>
+            <span class="font-mono text-[10px] text-bone-dim">one column, one ticket</span>
+          </div>
+          <div class="mt-5 space-y-2">
+            {withRows.map((row) => (
+              <div class="flex items-center justify-between rounded-lg border border-ember/20 bg-ink/70 px-4 py-3">
+                <span class="flex items-center gap-2 text-sm font-medium text-paper">
+                  <span class="h-1.5 w-1.5 flex-none rounded-full bg-emerald-400"></span>
+                  {row.label}
+                </span>
+                <span class="font-mono text-[10px] text-bone-dim text-right">{row.detail}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What shows up -->
+  <section class="border-b border-bone-dim/20 py-24">
+    <div class="mx-auto max-w-6xl px-6">
+      <div class="max-w-2xl mb-16">
+        <p class="font-mono text-xs uppercase tracking-[0.2em] text-ember">What shows up in the rail</p>
+        <h2 class="mt-3 font-display text-3xl font-semibold text-paper sm:text-4xl">
+          Eight kinds of context, one place to read them
+        </h2>
+        <p class="mt-3 text-bone">
+          Each panel only renders when there's something to show — no empty box taking up space
+          on a tenant that hasn't connected that system.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {panels.map((panel) => (
+          <div class="group relative flex flex-col rounded-xl border border-bone-dim/20 bg-ink-raised/40 p-7 transition-all duration-300 hover:border-ember/40 hover:bg-ink-raised/80 hover:shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
+            <div class="flex items-center justify-between gap-3">
+              <span class="font-mono text-[11px] font-semibold uppercase tracking-wider text-ember">
+                {panel.tag}
+              </span>
+              <span
+                class:list={[
+                  'rounded border px-2 py-0.5 font-mono text-[10px] font-semibold uppercase tracking-wider',
+                  panel.edition === 'Enterprise'
+                    ? 'border-ember/60 bg-ember/15 text-ember'
+                    : 'border-moss/50 bg-moss/10 text-moss'
+                ]}
+              >
+                {panel.edition}
+              </span>
+            </div>
+            <h3 class="mt-3 font-display text-lg font-semibold text-paper">{panel.title}</h3>
+            <p class="mt-3 text-sm leading-relaxed text-bone">{panel.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- How it stays honest -->
+  <section class="border-b border-bone-dim/20 py-20 bg-ink-raised/30">
+    <div class="mx-auto max-w-4xl px-6">
+      <p class="font-mono text-xs uppercase tracking-[0.2em] text-ember text-center">How it stays honest</p>
+      <h2 class="mt-3 font-display text-3xl font-semibold text-paper text-center sm:text-4xl">
+        Fetched live, never copied
+      </h2>
+      <div class="mt-8 space-y-5 text-bone leading-relaxed">
+        <p>
+          Every panel above is fetched on demand, the moment an agent opens the ticket — never
+          synced into a background job, never cached into a second copy of a system you already
+          run and already secure. Close the ticket and the rail forgets it ever asked.
+        </p>
+        <p>
+          Each connector runs sandboxed, declares exactly what it's allowed to touch, and
+          authenticates with your own API keys — never a shared vendor app sitting between you
+          and your data. That's also why it's auditable rather than promised: the plugin host and
+          the SDKs it runs are code you can read, not a claim you take on faith.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-24 relative overflow-hidden">
+    <div class="mx-auto max-w-4xl px-6 text-center">
+      <h2 class="font-display text-3xl font-semibold text-paper sm:text-4xl">Ready to see it on your own stack?</h2>
+      <p class="mx-auto mt-4 max-w-xl text-bone">
+        Community ships the plugin host and SDK free — write your own connector today. Enterprise
+        adds the 15 ready-made ones, kept working by this project.
+      </p>
+      <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+        <a
+          href={SITE.quickstartUrl}
+          class="w-full sm:w-auto rounded-lg border border-ember bg-ember px-8 py-3.5 font-mono text-xs font-semibold uppercase tracking-wider text-ink shadow-[0_0_25px_rgba(232,137,11,0.25)] transition-all hover:bg-ember/90 hover:-translate-y-0.5"
+        >
+          Deploy in 5 minutes
+        </a>
+        <a
+          href={SITE.buildPluginUrl}
+          class="w-full sm:w-auto rounded-lg border border-bone-dim/40 bg-ink/60 px-6 py-3.5 font-mono text-xs font-medium uppercase tracking-wider text-bone transition-all hover:border-ember hover:text-paper hover:-translate-y-0.5"
+        >
+          Read the plugin guide
+        </a>
+      </div>
+    </div>
+  </section>
+</MarketingLayout>

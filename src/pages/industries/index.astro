@@ -1,0 +1,165 @@
+---
+import { getCollection } from 'astro:content';
+import MarketingLayout from '../../layouts/MarketingLayout.astro';
+import { SITE } from '../../consts';
+
+const industries = (await getCollection('industries')).sort((a, b) => a.data.order - b.data.order);
+const caseStudies = (await getCollection('caseStudies'))
+  .filter((study) => !study.data.placeholder)
+  .sort((a, b) => a.data.order - b.data.order);
+---
+
+<MarketingLayout
+  title="Industries & Compliance"
+  description="How Salamandr fits healthcare, financial services, public sector, e-commerce and MSP/IT teams — and why full data custody makes it the right choice for each."
+>
+  <!-- Hero Section -->
+  <section class="relative overflow-hidden border-b border-bone-dim/20 pb-20 pt-16 sm:pb-24 sm:pt-20">
+    <!-- Ambient Glow -->
+    <div class="pointer-events-none absolute left-1/2 top-0 -translate-x-1/2 h-[450px] w-full max-w-7xl bg-[radial-gradient(ellipse_80%_60%_at_50%_-10%,rgba(232,137,11,0.12),transparent_70%)]"></div>
+
+    <div class="mx-auto max-w-5xl px-6 text-center">
+      <div class="inline-flex items-center gap-2 rounded-full border border-ember/30 bg-ember/10 px-3.5 py-1.5 font-mono text-xs text-ember backdrop-blur-sm shadow-[0_0_15px_rgba(232,137,11,0.15)]">
+        <span class="flex h-1.5 w-1.5 rounded-full bg-ember"></span>
+        <span>Regulated &amp; Privacy-First Sectors</span>
+      </div>
+
+      <h1 class="mt-8 font-display text-4xl font-semibold tracking-tight text-paper sm:text-5xl lg:text-6xl">
+        Built for teams where <span class="bg-gradient-to-r from-ember via-amber-400 to-ember bg-clip-text text-transparent italic">data custody</span> isn't optional
+      </h1>
+
+      <p class="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-bone">
+        Strict compliance requirements, security audits, data sovereignty, or high-volume e-commerce —
+        Salamandr gives you complete ownership of your helpdesk infrastructure and customer records.
+      </p>
+
+      <!-- Sector Pills -->
+      <div class="mt-10 flex flex-wrap justify-center gap-2.5">
+        {industries.map((ind) => (
+          <a
+            href={`#${ind.id}`}
+            class="inline-flex items-center rounded-lg border border-bone-dim/25 bg-ink/70 px-4 py-2 font-mono text-xs text-bone transition-all hover:border-ember/60 hover:text-paper hover:-translate-y-0.5"
+          >
+            <span>{ind.data.name}</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Industries List -->
+  <section class="py-20">
+    <div class="mx-auto max-w-5xl px-6 space-y-12">
+      {industries.map((industry) => (
+        <div
+          id={industry.id}
+          class="scroll-mt-24 rounded-2xl border border-bone-dim/20 bg-ink-raised/40 p-8 sm:p-10 shadow-[0_4px_25px_rgba(0,0,0,0.3)] transition-all duration-200 hover:border-ember/30"
+        >
+          <div class="grid gap-8 lg:grid-cols-[1fr_1.4fr] lg:items-start">
+            <!-- Left: Industry info & The Pain Point -->
+            <div class="space-y-6">
+              <div>
+                <h2 class="font-display text-2xl font-semibold text-paper">{industry.data.name}</h2>
+                <p class="font-mono text-xs uppercase tracking-wider text-ember mt-1">{industry.data.tagline}</p>
+              </div>
+
+              <!-- Challenge Box -->
+              <div class="rounded-xl border border-bone-dim/20 bg-ink/80 p-5">
+                <p class="font-mono text-[10px] font-semibold uppercase tracking-wider text-bone-dim flex items-center gap-1.5 mb-2">
+                  <span class="h-1.5 w-1.5 rounded-full bg-amber-400"></span>
+                  The SaaS Challenge
+                </p>
+                <p class="text-sm leading-relaxed text-bone">{industry.data.painPoint}</p>
+              </div>
+
+              <div class="pt-2">
+                <a
+                  href={`${SITE.industriesUrl}${industry.id}/`}
+                  class="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-ember hover:underline font-medium"
+                >
+                  Read full {industry.data.name} guide &rarr;
+                </a>
+              </div>
+            </div>
+
+            <!-- Right: Why Salamandr Fits -->
+            <div class="space-y-4 lg:border-l lg:border-bone-dim/20 lg:pl-8">
+              <p class="font-mono text-xs font-semibold uppercase tracking-wider text-paper">
+                Why Salamandr is the right fit
+              </p>
+              <ul class="space-y-3.5">
+                {industry.data.whyFit.map((point) => (
+                  <li class="flex items-start gap-3 text-sm text-bone">
+                    <span class="mt-1 flex h-4 w-4 flex-none items-center justify-center rounded-full bg-emerald-500/20 text-emerald-400 font-mono text-[10px]">
+                      ✓
+                    </span>
+                    <span class="leading-relaxed">{point}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Optional Published Case Studies Section (if any are active) -->
+  {caseStudies.length > 0 && (
+    <section class="border-t border-bone-dim/20 py-20 bg-ink-raised/30">
+      <div class="mx-auto max-w-5xl px-6">
+        <p class="font-mono text-xs uppercase tracking-[0.2em] text-ember">Case studies</p>
+        <h2 class="mt-3 font-display text-3xl font-semibold text-paper">Real deployments</h2>
+        <p class="mt-4 max-w-xl text-bone">In the words of the teams running them.</p>
+
+        <div class="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          {caseStudies.map((study) => (
+            <div class="relative flex flex-col rounded-xl border border-bone-dim/25 bg-ink/80 p-6 pt-8">
+              <p class="font-mono text-xs uppercase tracking-wider text-ember">{study.data.industry}</p>
+              <h3 class="mt-2 font-display text-lg font-semibold text-paper">{study.data.company}</h3>
+              <dl class="mt-4 space-y-3 text-sm">
+                <div>
+                  <dt class="font-mono text-[11px] uppercase tracking-wider text-bone-dim">Challenge</dt>
+                  <dd class="mt-1 text-bone">{study.data.challenge}</dd>
+                </div>
+                <div>
+                  <dt class="font-mono text-[11px] uppercase tracking-wider text-bone-dim">Solution</dt>
+                  <dd class="mt-1 text-bone">{study.data.solution}</dd>
+                </div>
+                <div>
+                  <dt class="font-mono text-[11px] uppercase tracking-wider text-bone-dim">Result</dt>
+                  <dd class="mt-1 text-bone">{study.data.result}</dd>
+                </div>
+              </dl>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Bottom CTA -->
+  <section class="border-t border-bone-dim/20 py-24 relative overflow-hidden">
+    <div class="mx-auto max-w-4xl px-6 text-center">
+      <h2 class="font-display text-3xl font-semibold text-paper sm:text-4xl">Don't see your specific industry?</h2>
+      <p class="mx-auto mt-4 max-w-xl text-bone">
+        The fundamental advantages — 100% data custody on your own servers, zero telemetry, and direct API integrations —
+        apply regardless of what you sell or how you are regulated.
+      </p>
+      <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+        <a
+          href={SITE.quickstartUrl}
+          class="w-full sm:w-auto inline-flex items-center justify-center rounded-lg border border-ember bg-ember px-8 py-3.5 font-mono text-xs font-semibold uppercase tracking-wider text-ink shadow-[0_0_25px_rgba(232,137,11,0.25)] transition-all hover:bg-ember/90 hover:-translate-y-0.5"
+        >
+          Try the quickstart
+        </a>
+        <a
+          href={SITE.compareUrl}
+          class="w-full sm:w-auto inline-flex items-center justify-center rounded-lg border border-bone-dim/40 bg-ink/60 px-6 py-3.5 font-mono text-xs font-medium uppercase tracking-wider text-bone transition-all hover:border-ember hover:text-paper hover:-translate-y-0.5"
+        >
+          View all comparisons &rarr;
+        </a>
+      </div>
+    </div>
+  </section>
+</MarketingLayout>

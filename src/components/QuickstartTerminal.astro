@@ -1,0 +1,57 @@
+---
+// QuickstartTerminal.astro — Honest, functional deployment terminal snippet
+import { SITE } from '../consts';
+---
+
+<div class="relative mx-auto w-full max-w-3xl rounded-xl border border-bone-dim/30 bg-ink-raised shadow-[0_20px_50px_rgba(0,0,0,0.8),0_0_30px_rgba(232,137,11,0.06)] overflow-hidden text-left">
+  <!-- Terminal Topbar -->
+  <div class="flex items-center justify-between border-b border-bone-dim/20 bg-ink px-4 py-2.5">
+    <div class="flex items-center gap-2">
+      <div class="h-2.5 w-2.5 rounded-full bg-bone-dim/30"></div>
+      <div class="h-2.5 w-2.5 rounded-full bg-bone-dim/30"></div>
+      <div class="h-2.5 w-2.5 rounded-full bg-bone-dim/30"></div>
+      <span class="ml-2 font-mono text-[11px] text-bone-dim">bash — docker compose deployment</span>
+    </div>
+    <div class="flex items-center gap-2">
+      <span class="font-mono text-[10px] text-bone-dim">Compose · Swarm · Helm</span>
+    </div>
+  </div>
+
+  <!-- Terminal Content -->
+  <div class="p-6 font-mono text-xs text-bone leading-relaxed space-y-4">
+    <div>
+      <p class="text-bone-dim"># 1. Download deployment configuration</p>
+      <p class="text-paper mt-1 flex items-center gap-2">
+        <span class="text-ember">$</span>
+        <span>curl -L https://github.com/salamandr/salamandr/archive/refs/heads/main.tar.gz | tar xz</span>
+      </p>
+    </div>
+
+    <div>
+      <p class="text-bone-dim"># 2. Launch self-hosted stack (Postgres + Redis + Salamandr)</p>
+      <p class="text-paper mt-1 flex items-center gap-2">
+        <span class="text-ember">$</span>
+        <span>cd deploy/production &amp;&amp; docker compose up -d</span>
+      </p>
+    </div>
+
+    <div class="border-t border-bone-dim/15 pt-3">
+      <p class="text-emerald-400/90 flex items-center gap-2">
+        <span>✔</span> Container salamandr-backend started (port :8080)
+      </p>
+      <p class="text-emerald-400/90 flex items-center gap-2">
+        <span>✔</span> Database migrations verified (PostgreSQL 16)
+      </p>
+      <p class="text-emerald-400/90 flex items-center gap-2">
+        <span>✔</span> Zero external phone-home · Air-gapped mode active
+      </p>
+    </div>
+
+    <div class="flex items-center justify-between border-t border-bone-dim/15 pt-3 text-[11px]">
+      <span class="text-bone-dim">Ready on http://localhost:8080</span>
+      <a href={SITE.quickstartUrl} class="text-ember hover:underline flex items-center gap-1 font-medium">
+        Read full deployment guide &rarr;
+      </a>
+    </div>
+  </div>
+</div>
